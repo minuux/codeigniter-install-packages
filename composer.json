@@ -1,0 +1,33 @@
+{
+	"name": "minuux/codeigniter-install-packages",
+	"type": "composer-installer",
+	"description": "Composer installers for CodeIgniter",
+	"license": "MIT",
+	"keywords": [
+		"codeigniter", "composer", "installer", "spark", "sparks",
+		"module", "MX", "HMVC", "core", "library"
+	],
+	"authors": [
+		{
+			"name": "minuux",
+			"email": "minuux@gmail.com",
+			"role": "Developer"
+		}
+	],
+	"homepage": "https://github.com/minuux/codeigniter-install-packages",
+	"support": {
+		"issues": "https://github.com/minuux/codeigniter-install-packages/issues",
+		"source": "https://github.com/minuux/codeigniter-install-packages"
+	},
+	"autoload": {
+		"psr-0": {
+			"Composer\\Installer": "src/"
+		}
+	},
+	"extra": {
+		"class": "Composer\\Installer\\CodeigniterInstallPackages"
+	},
+	"require-dev": {
+		"composer/composer": "^1.3.2"
+	}
+}
