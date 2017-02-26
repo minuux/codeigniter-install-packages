@@ -42,16 +42,14 @@ class CodeigniterInstallPackages extends LibraryInstaller{
 		}
 		$config[$package->getPrettyName()]=array(
 			'path'=>$this->getInstallPath($package).'/'.$extra['main'],
-			'type'=>package->getType(),
+			'type'=>$package->getType(),
 			'class_name'=>$extra['class_name']
 		);
     	
     	$str_tmp="<?php\r\n"; //得到php的起始符。$str_tmp将累加
 		$str_tmp.="defined('BASEPATH') OR exit('No direct script access allowed');\r\n";
-		foreach ($config as $item_name => $item_config) {
-			$str_tmp.="\$config['$item_name']=array('type'=>'$item_config['type']','class_name'=>'$item_config['class_name']','path'=>'$item_config['path']');\r\n";
-		}
-		file_put_contents($packagePath,$str_tmp);
+		//http://stackoverflow.com/questions/18342477/save-array-to-php-file
+		file_put_contents($packagePath,$str_tmp.'$config='. var_export($config, true) . ';');
 	}
 
 }
