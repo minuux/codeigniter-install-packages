@@ -24,16 +24,16 @@ class CodeigniterInstallPackages extends LibraryInstaller{
 			throw new \InvalidArgumentException("extra's main is require");
 		}
 
-		$prefix=rtrim($package->getType(),'codeigniter-');
-		$configPath=dirname(rtrim($this->composer->getConfig()->get('vendor-dir'), '/')).'/application/config/';
-    		$packagePath=$configPath.'packages.php';
+		
+		$configPath=dirname(rtrim($this->composer->getConfig()->get('vendor-dir'), '/')).'/application/config/packages.php';
+    		
     		// @HACK to work around the security check in CI config files
     		if ( ! defined('BASEPATH')){
 			define('BASEPATH', 1);
 		}
     	
-    		if (file_exists($packagePath)){
-			@include($packagePath);
+    		if (file_exists($configPath)){
+			@include($configPath);
 		}else{
 			$config=array();
 		}
@@ -57,7 +57,7 @@ class CodeigniterInstallPackages extends LibraryInstaller{
     		$str_tmp="<?php\r\n"; //得到php的起始符。$str_tmp将累加
 		$str_tmp.="defined('BASEPATH') OR exit('No direct script access allowed');\r\n";
 		//http://stackoverflow.com/questions/18342477/save-array-to-php-file
-		file_put_contents($packagePath,$str_tmp.'$config='. var_export($config, true) . ';');
+		file_put_contents($configPath,$str_tmp.'$config='. var_export($config, true) . ';');
 	}
 
 }
